@@ -8,9 +8,7 @@ import {
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip
 } from 'ng2-charts';
-//! my data
 
-const data: InventoryData[] = inventory;
 
 @Component({
   selector: 'app-inventory',
@@ -23,8 +21,8 @@ export class InventoryComponent implements OnInit {
   public pieChartOptions: ChartOptions = {
     responsive: true
   };
-  public pieChartLabels: Label[] = ['US', 'UK', 'Canada'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
+  public pieChartLabels: Label[];
+  public pieChartData: SingleDataSet;
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -36,21 +34,34 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.inv = inventory;
+    this.pieChartLabels = this.getPieChartLabels(this.inv);
+    for(let i: number = 0; i < this.pieChartLabels.length; i++) {
+      this.dataSet[i] = 0;
+    }
+    console.log(this.pieChartLabels);
     this.pieChartInit();
   }
-
-  pieChartInit() {
-    for (let i: number = 0; i < this.inv.length; i++) {
-      if ( this.inv[i].userLocation === "US") {
-        this.dataSet[0]++;
-      } else if ( this.inv[i].userLocation === "UK") {
-        this.dataSet[1]++;
-      } else if ( this.inv[i].userLocation === "Canada") {
-        this.dataSet[2]++;
+  getPieChartLabels(labels) {
+    var unique = [];
+    var distinct = [];
+    for (let i: number = 0; i< labels.length; i++) {
+      if (!unique[labels[i].userLocation]) {
+        distinct.push(labels[i].userLocation);
+        unique[labels[i].userLocation] = 1;
       }
-    };
+    }
+    return distinct;
+  }
+  pieChartInit() {
+    for (let i: number = 0; i < this.inv.length; i++ ) {
+      for ( let j: number = 0; j < this.inv.length; j++) {
+        if ( this.inv[i].userLocation === this.pieChartLabels[j]) {
+          this.dataSet[j]++;
+        }
+      }
+    }
     this.pieChartData = this.dataSet;
   }
   displayedColumns: string[] = ['id', 'timestamp', 'userLocation', 'package', 'organization', 'customer'];
-  dataSource = data;
+  dataSource = inventory;
 }

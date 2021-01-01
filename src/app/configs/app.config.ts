@@ -47,4 +47,28 @@ export const inventory = [
     organization: 'CIT Mobile',
     customer: 'Bowjack'
   },
+  {
+    id: 6,
+    timestamp: '2020-12-29',
+    userLocation: 'NYC',
+    package: 'P3',
+    organization: 'CIT Mobile',
+    customer: 'Thor'
+  },
+  {
+    id: 7,
+    timestamp: '2020-12-29',
+    userLocation: 'NYC',
+    package: 'P3',
+    organization: 'CIT Mobile',
+    customer: 'Thor2'
+  },
+  {
+    id: 8,
+    timestamp: '2020-12-29',
+    userLocation: 'India',
+    package: 'P3',
+    organization: 'CIT Mobile',
+    customer: 'Adam'
+  },
 ]
