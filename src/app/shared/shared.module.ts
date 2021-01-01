@@ -4,8 +4,8 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon'
-
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button'
 const components = [
   AppbarComponent,
   SidebarComponent
@@ -15,6 +15,8 @@ const modules = [
   // Material modules
   MatIconModule,
   MatToolbarModule,
+  MatSidenavModule,
+  MatIconModule
 ]
 
 @NgModule({

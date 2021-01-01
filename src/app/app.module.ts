@@ -9,7 +9,6 @@ import { LayoutComponent } from './feature/base/layout/layout.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
   ],
   imports: [
     BrowserModule,
