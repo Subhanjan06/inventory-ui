@@ -1,3 +1,26 @@
 <mat-toolbar color="primary">
-  <span>Inventory Management System</span>
+  <button mat-icon-button (click)="mainNav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  &nbsp;
+  <span style="padding-left: 25px;">Inventory</span>
 </mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #mainNav="matSidenav" mode="push">
+    <div>
+      <img src="assets/profile.png" alt="Profile" height="90" width="90" style="margin: 0 25%;">
+    </div>
+    <mat-selection-list style="margin-top: 40px;" #menu [multiple]="false">
+      <mat-list-option *ngFor="let option of sideNav" [value]="option">
+        <div routerLink="{{option.path}}" style="margin-left: 20px;">
+          <mat-icon>{{option.icon}}</mat-icon> &nbsp;
+          <div style="margin-top: -25px; margin-left: 25%;">{{option.name}}</div>
+          <mat-divider></mat-divider>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

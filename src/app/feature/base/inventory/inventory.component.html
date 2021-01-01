@@ -1,1 +1,57 @@
-<app-layout></app-layout>
+<app-layout>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 float-left">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>ID</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center; padding-right: 5px;"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>Timestamp</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center; padding-right: 5px;"> {{element.timestamp |date}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="userLocation">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>userLocation</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center; padding-right: 5px;"> {{element.userLocation}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="package">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>Package</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center; padding-right: 5px;"> {{element.package}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="organization">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>organization</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.organization}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="customer">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center; padding-right: 5px;"> <strong>Customer</strong>&nbsp; </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center; padding-right: 5px;"> {{element.customer}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <div class="float-right" style="height: 50%; width: 50%;">
+    <canvas class="float-right" baseChart
+      [data]="pieChartData"
+      [labels]="pieChartLabels"
+      [chartType]="pieChartType"
+      [plugins]="pieChartPlugins"
+      [legend]="pieChartLegend">
+    </canvas>
+  </div>
+  <br>
+
+  <div>
+    <canvas baseChart></canvas>
+  </div>
+</app-layout>
